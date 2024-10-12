@@ -1,3 +1,16 @@
 body {
     background-color: skyblue;
+
+    .img-livre {
+        width: 5rem;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+    }
+
+    .card-img-top {
+        height: 350px;
+    }
+
 }

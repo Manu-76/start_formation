@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Hello HomepageController!
+{% endblock %}
+
+{% block body %}
+    <style>
+    .example-wrapper { margin: 1em auto; text-align: center; max-width: 1440px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <div class="example-wrapper">
+        <h1>
+            Nos livres
+            ✅
+        </h1>
+        {# on commente pour nos livres #}
+        {# <h1>
+            {{ message }}
+            ✅
+        </h1> #}
+        {# On commente pour exemple de message #}
+        {# <h1>Hello {{ controller_name }}! ✅</h1> #}
+
+        {# This friendly message is coming from:
+            <ul>
+            <li>Your controller at <code>C:/xampp/htdocs/Symfony_DWWM/start_formation/src/Controller/HomepageController.php</code></li>
+            <li>Your template at <code>C:/xampp/htdocs/Symfony_DWWM/start_formation/templates/homepage/index.html.twig</code></li>
+        </ul> #}
+        <main>
+
+            {# <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">
+                            Album example
+                        </h1>
+                        <p class="lead text-body-secondary">
+                            Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary my-2">
+                                Main call to action
+                            </a>
+                            <a href="#" class="btn btn-secondary my-2">
+                                Secondary action
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </section> #}
+
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                    {% for livre in livres|sort((a,b) => a.auteur.nom <=> b.auteur.nom) %}
+                        <div class="col">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header">
+                                <img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ 'Photo_du_livre_' ~ livre.titre }}" class="card-img-top">
+                            </div>
+                                <div class="card-body">
+                                    <p class="card-title">
+                                        {{ livre.titre }}
+                                    </p>
+                                    <p class="card-text fs-6">
+                                        {{ livre.resume }}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    {{ livre.auteur.prenom ~ ' ' ~ livre.auteur.nom }}
+                                </div>
+                                <div class="d-flex justify-content-around align-items-baseline my-4">
+                                    <p>
+                                        {{ livre.tarif ~ ' €' }}
+                                    </p>
+                                    <a href="{{ path('app_cart_add', {'slug': livre.id }) }}" class="btn btn-sm btn-outline-secondary">
+                                        Acheter
+                                    </a>
+                                    {# {{dump(user.livres.values)}} #}
+                                    <i class="fa {{ livre in user.livres.values ? "fa-star" : "fa-star-o" }} bt-favori" data-livreid="{{ livre.id }}" type="button" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                            <p>Aucun livre</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app', 'addLivresFavoris']) }}
+{% endblock %}

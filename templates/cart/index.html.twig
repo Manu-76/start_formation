@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; padding: 1em; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; background-color: #F5F5F5}
+</style>
+
+<div class="example-wrapper">
+<h1>Mon panier</h1>
+    <table class="table text-center align-middle table-bordered my-5">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Livre
+                    </th>
+                    <th scope="col">
+                        Image
+                    </th>
+                    <th scope="col">
+                        Quantité
+                    </th>
+                    <th scope="col">
+                        Prix Unitaire
+                    </th>
+                    <th scope="col">
+                        Total Article
+                    </th>
+                    <th scope="col">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for objetDansPanier in user.produitDansPaniers %}
+                {# {{dump(user.pro)}} #}
+                <tr>
+                    <td>
+                        {{ objetDansPanier.livre.titre }}
+                    </td>
+                    <td>
+                        <img src="{{ asset('images/livres/' ~ objetDansPanier.livre.imageName) }}" alt="{{ 'image_de_' ~ objetDansPanier.livre.titre }}" class="img-livre">
+                    </td>
+                    <td>
+                        <a href="{{ path('app_cart_minus', {'slug': objetDansPanier.id}) }}"><i class="fa fa-minus-square me-2" aria-hidden="true"></i></a>
+                            {{ objetDansPanier.quantite }}
+                        <a href="{{ path('app_cart_plus', {'slug': objetDansPanier.id}) }}"><i class="fa fa-plus-square ms-2" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                        {{ objetDansPanier.livre.tarif ~ ' €' }}
+                    </td>
+                    <td>
+                        {{ objetDansPanier.montantTotal ~ ' €' }}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_cart_remove', {'slug': objetDansPanier.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="5" class="text-uppercase">
+                        Total du panier
+                    </td>
+                    <td>
+                        <b>
+                            {{ user.totalPanier ~ ' €' }}
+                        </b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-evenly">
+            <a href="{{ path('app_delete_all_cart') }}" class="btn btn-danger">Vider le panier</a>
+            <a href="" class="btn btn-success">Passer la commande</a>
+        </div>
+</div>
+{% endblock %}

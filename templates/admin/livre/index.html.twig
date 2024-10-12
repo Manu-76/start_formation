@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Livre index
+{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1>
+            Livre index
+        </h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    {# Je remplace la col id par photo #}
+                    <th>
+                        Photo
+                    </th>
+                    <th>
+                        Titre
+                    </th>
+                    <th>
+                        Résumé
+                    </th>
+                    <th>
+                        Tarif
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livre in livres %}
+                    <tr>
+                        {# Je remplace la data par img src #}
+                        <td>
+                            <img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ 'Photo_du_livre_' ~ livre.titre }}" class="img-livre">
+                        </td>
+                        <td>
+                            {{ livre.titre }}
+                        </td>
+                        <td class="col-7">
+                            {{ livre.resume }}
+                        </td>
+                        <td>
+                            {{ livre.tarif ~ ' €' }}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}">
+                                show
+                            </a>
+                            <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}">
+                                edit
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">
+                            no records found
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_admin_livre_new') }}">
+            Create new
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+<div class="container container-global my-5 p-3">
+    <h1 class="my-5 text-center">
+        Back-office du site
+    </h1>
+
+    <div class="d-grid gap-2 col-4 mx-auto">
+        <a href="{{ path('app_admin_auteur_index') }}" class="btn btn-primary" role="button">Les auteurs</a>
+        <a href="{{ path('app_admin_livre_index') }}" class="btn btn-primary" role="button">Les livres</a>
+        <a href="{{ path('app_admin_user_index') }}" class="btn btn-primary" role="button">Les administrateurs</a>
+    </div>
+</div>
+{% endblock %}

@@ -79,8 +79,11 @@
                                     <a href="{{ path('app_cart_add', {'slug': livre.id }) }}" class="btn btn-sm btn-outline-secondary">
                                         Acheter
                                     </a>
+                                    {# {{ dump(app.user)}} #}
+                                    {% if app.user %}
                                     {# {{dump(user.livres.values)}} #}
-                                    <i class="fa {{ livre in user.livres.values ? "fa-star" : "fa-star-o" }} bt-favori" data-livreid="{{ livre.id }}" type="button" aria-hidden="true"></i>
+                                        <i class="{{ livre in user.livres.values ? "fa-solid fa-star" : "fa-regular fa-star" }} bt-favori" data-livreid="{{ livre.id }}" type="button" aria-hidden="true"></i>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

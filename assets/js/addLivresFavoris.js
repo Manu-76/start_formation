@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 var livreId = this.getAttribute("data-livreid"); // Récupère l'attribut "data-livreid"
                 
                 // Vérifie si l'icône est déjà un favori (fa-star)
-                var isFavori = this.classList.contains("fa-star");
+                var isFavori = this.classList.contains("fa-solid");
                 var url = isFavori ? 'mon-compte/deletefavori' : 'mon-compte/addfavori'; // Définit l'URL en fonction de l'état actuel
 
                 // Utilisation de Fetch API pour envoyer la requête AJAX
@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (response.ok) {
                         if (isFavori) {
                             // Si c'était un favori, on le retire
-                            button.classList.remove("fa-star");
-                            button.classList.add("fa-star-o");
+                            button.classList.remove("fa-solid");
+                            button.classList.add("fa-regular");
                         } else {
                             // Sinon, on l'ajoute comme favori
-                            button.classList.remove("fa-star-o");
-                            button.classList.add("fa-star");
+                            button.classList.remove("fa-regular");
+                            button.classList.add("fa-solid");
                         }
                     } else {
                         return Promise.reject(response);

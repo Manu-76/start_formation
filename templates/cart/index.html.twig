@@ -43,9 +43,9 @@
                         <img src="{{ asset('images/livres/' ~ objetDansPanier.livre.imageName) }}" alt="{{ 'image_de_' ~ objetDansPanier.livre.titre }}" class="img-livre">
                     </td>
                     <td>
-                        <a href="{{ path('app_cart_minus', {'slug': objetDansPanier.id}) }}"><i class="fa fa-minus-square me-2" aria-hidden="true"></i></a>
+                        <a href="{{ path('app_cart_minus', {'slug': objetDansPanier.id}) }}"><i class="fa-solid fa-square-minus me-2" aria-hidden="true"></i></a>
                             {{ objetDansPanier.quantite }}
-                        <a href="{{ path('app_cart_plus', {'slug': objetDansPanier.id}) }}"><i class="fa fa-plus-square ms-2" aria-hidden="true"></i></a>
+                        <a href="{{ path('app_cart_plus', {'slug': objetDansPanier.id}) }}"><i class="fa-solid fa-square-plus ms-2" aria-hidden="true"></i></a>
                     </td>
                     <td>
                         {{ objetDansPanier.livre.tarif ~ ' €' }}
